@@ -3,13 +3,19 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: API specification for Telegram Chatbot + PWA
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: messages
+    description: Telegram message operations
+  - name: users
+    description: Telegram user operations
+  - name: stats
+    description: Dashboard statistics
 paths:
   /healthz:
     get:
@@ -24,6 +30,87 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /telegram/webhook:
+    post:
+      operationId: telegramWebhook
+      tags: [messages]
+      summary: Telegram webhook endpoint
+      description: Receives incoming updates from Telegram
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookResponse"
+
+  /messages:
+    get:
+      operationId: getMessages
+      tags: [messages]
+      summary: List all messages
+      description: Returns a paginated list of messages received via Telegram
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: userId
+          in: query
+          schema:
+            type: ["integer", "null"]
+      responses:
+        "200":
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessagesResponse"
+
+  /users:
+    get:
+      operationId: getUsers
+      tags: [users]
+      summary: List all Telegram users
+      description: Returns all known Telegram users
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TelegramUser"
+
+  /stats:
+    get:
+      operationId: getStats
+      tags: [stats]
+      summary: Get dashboard statistics
+      description: Returns aggregated statistics for the dashboard
+      responses:
+        "200":
+          description: Statistics summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stats"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +121,89 @@ components:
       required:
         - status
 
+    WebhookResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+      required:
+        - ok
+
+    TelegramUser:
+      type: object
+      properties:
+        id:
+          type: integer
+        telegramId:
+          type: integer
+        username:
+          type: ["string", "null"]
+        firstName:
+          type: string
+        lastName:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - telegramId
+        - firstName
+        - createdAt
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+        telegramMessageId:
+          type: integer
+        userId:
+          type: integer
+        text:
+          type: ["string", "null"]
+        direction:
+          type: string
+          enum: [incoming, outgoing]
+        createdAt:
+          type: string
+          format: date-time
+        user:
+          $ref: "#/components/schemas/TelegramUser"
+      required:
+        - id
+        - telegramMessageId
+        - userId
+        - direction
+        - createdAt
+        - user
+
+    MessagesResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/Message"
+        total:
+          type: integer
+      required:
+        - messages
+        - total
+
+    Stats:
+      type: object
+      properties:
+        totalMessages:
+          type: integer
+        totalUsers:
+          type: integer
+        messagesLast24h:
+          type: integer
+        activeUsersLast24h:
+          type: integer
+      required:
+        - totalMessages
+        - totalUsers
+        - messagesLast24h
+        - activeUsersLast24h

@@ -1,0 +1,15 @@
+packages:
+  "framer-motion": "For smooth page transitions and micro-interactions"
+  "clsx": "For conditional class merging"
+  "tailwind-merge": "For conditional class merging"
+  "date-fns": "For formatting message timestamps and user join dates"
+  "lucide-react": "For UI icons"
+
+images:
+  - path: "artifacts/pwa/public/images/hero-bg.png"
+    description: "Abstract dark professional background with subtle electric blue geometric glowing shapes, modern messaging app feel"
+    aspect_ratio: "16:9"
+
+notes:
+  - Expects dark mode to be the default visual language.
+  - Using hooks directly from @workspace/api-client-react as per implementation notes.
