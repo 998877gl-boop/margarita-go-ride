@@ -1,0 +1,8 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="96" fill="#1e293b"/>
+  <rect x="40" y="40" width="432" height="432" rx="72" fill="#0f172a"/>
+  <!-- Telegram paper plane -->
+  <path d="M128 256 L384 144 L272 384 L240 288 Z" fill="#3b82f6" opacity="0.9"/>
+  <path d="M240 288 L272 384 L320 320 Z" fill="#2563eb"/>
+  <path d="M128 256 L240 288 L320 320 L384 144 Z" fill="#60a5fa" opacity="0.3"/>
+</svg>
