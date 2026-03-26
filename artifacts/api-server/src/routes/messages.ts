@@ -1,7 +1,7 @@
 import { Router, type IRouter } from "express";
 import { db } from "@workspace/db";
 import { messagesTable, telegramUsersTable } from "@workspace/db";
-import { eq, desc, count, sql } from "drizzle-orm";
+import { eq, desc, count } from "drizzle-orm";
 import { GetMessagesQueryParams } from "@workspace/api-zod";
 
 const router: IRouter = Router();

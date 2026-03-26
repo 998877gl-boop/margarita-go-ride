@@ -1,5 +1,5 @@
 import { Router, type IRouter } from "express";
-import { Bot, webhookCallback } from "grammy";
+import { Bot } from "grammy";
 import { db } from "@workspace/db";
 import { telegramUsersTable, messagesTable } from "@workspace/db";
 import { eq } from "drizzle-orm";

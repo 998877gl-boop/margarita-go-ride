@@ -1,7 +1,7 @@
 import { Router, type IRouter } from "express";
 import { db } from "@workspace/db";
 import { messagesTable, telegramUsersTable } from "@workspace/db";
-import { count, gte, sql } from "drizzle-orm";
+import { count, gte } from "drizzle-orm";
 
 const router: IRouter = Router();
 
