@@ -54,17 +54,42 @@ artifacts-monorepo/
 - `telegram_users` — usuarios conocidos del bot (telegramId, username, firstName, lastName)
 - `messages` — mensajes entrantes y salientes (direction: incoming | outgoing)
 
-## Environment Variables Required
+## Local Development Setup
 
+### Required environment variables
 - `DATABASE_URL` — provisto automáticamente por Replit
-- `TELEGRAM_BOT_TOKEN` — token del bot de Telegram (desde @BotFather)
+- `TELEGRAM_BOT_TOKEN` — token del bot de Telegram (obtenido desde @BotFather)
+
+### Optional environment variables
+- `TELEGRAM_WEBHOOK_SECRET` — token secreto para autenticar webhooks de Telegram (recomendado en producción; sin él el endpoint es público)
+- `TELEGRAM_WEBHOOK_URL` — URL pública del webhook (e.g. `https://tu-dominio.replit.app/api/telegram/webhook`); si está configurado, el bot registra el webhook automáticamente al iniciar
+
+### Start all services
+```bash
+pnpm dev   # arranca api-server (PORT=8080) + pwa (PORT=23922) en paralelo
+```
+
+### Database migrations
+```bash
+pnpm --filter @workspace/db run push   # push del schema a PostgreSQL
+```
+
+### Regenerar clientes API
+```bash
+pnpm --filter @workspace/api-spec run codegen
+```
 
 ## Connecting Telegram Webhook
 
-Once deployed, register the webhook with Telegram:
+Once deployed, register the webhook manually or via `TELEGRAM_WEBHOOK_URL` env var:
 ```
-https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<your-domain>/api/telegram/webhook
+https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<tu-dominio>/api/telegram/webhook&secret_token=<WEBHOOK_SECRET>
 ```
+
+## Security Notes
+
+- **Production**: siempre configura `TELEGRAM_WEBHOOK_SECRET`. Sin él, cualquiera puede enviar updates falsos al endpoint.
+- El API server emite un `warn` al iniciar si `TELEGRAM_WEBHOOK_SECRET` no está configurado en `NODE_ENV=production`.
 
 ## TypeScript & Composite Projects
 
@@ -72,6 +97,7 @@ Every package extends `tsconfig.base.json` which sets `composite: true`.
 
 ## Root Scripts
 
+- `pnpm run dev` — arranca api-server + pwa juntos (puertos 8080 y 23922)
 - `pnpm run build` — runs typecheck + build all packages
 - `pnpm run typecheck` — full typecheck using project references
 

@@ -9,6 +9,14 @@ const router: IRouter = Router();
 
 const BOT_TOKEN = process.env["TELEGRAM_BOT_TOKEN"];
 const WEBHOOK_SECRET = process.env["TELEGRAM_WEBHOOK_SECRET"];
+const NODE_ENV = process.env["NODE_ENV"] ?? "development";
+
+if (!WEBHOOK_SECRET && NODE_ENV === "production") {
+  logger.warn(
+    "TELEGRAM_WEBHOOK_SECRET is not set — webhook endpoint is unauthenticated. " +
+    "Set this variable in production to prevent spoofed webhook submissions.",
+  );
+}
 
 let bot: Bot | null = null;
 
