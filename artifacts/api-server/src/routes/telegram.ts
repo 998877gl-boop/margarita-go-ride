@@ -52,10 +52,10 @@ if (BOT_TOKEN) {
         });
 
         const reply = `Recibí tu mensaje: "${text}"`;
-        await ctx.reply(reply);
+        const sent = await ctx.reply(reply);
 
         await db.insert(messagesTable).values({
-          telegramMessageId: ctx.message.message_id + 1,
+          telegramMessageId: sent.message_id,
           userId: user.id,
           text: reply,
           direction: "outgoing",
