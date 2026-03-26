@@ -1,0 +1,44 @@
+WHAT IT DOES (Section 1):
+Title: "What is Margarita Go Ride × A.L.M.A.?"
+Text: "Margarita Go Ride + A.L.M.A. is a vehicle rental marketplace with an intelligent conversational assistant that solves: Digital Friction (20+ WhatsApp chats), Operational Resilience Failures (no response after 8PM), Contextual Disconnection (no local guidance). Enables bookings in 90 seconds with Service Centralization (+20 agencies), Infrastructure Resilience (5 layers, works during blackouts), and 24/7 Hyperlocal Assistance."
+TARGET AUDIENCE (Section 2):
+Title: "Who is it for?"
+TOURISTS: National, International, Convenience, Safety + Guide
+LOCAL AGENCIES: Digitize customer service, Increase bookings, No 24/7 staff needed, CRUD Dashboard
+KEY FEATURES (Section 3):
+Title: "Key Features"
+Book in less than 90 seconds
+Resilient infrastructure (works during blackouts)
+Conversational assistant 7-turn flows + Caribbean personality
+Verified tourist info (Notion MCP)
+Agency dashboard without 24/7 staff
+RESILIENCE ARCHITECTURE - 5 LAYERS (Section 4):
+Title: "Blackout Stack - 5 Layers of Resilience"
+Layer 1: Telegram Bot (24/7 automated)
+Layer 2: PWA Offline-First (cache + sync <8min)
+Layer 3: SMS Fallback (Twilio emergencies)
+Layer 4: Call Center (human backup at agencies)
+Layer 5: Offline Kit (downloadable PWA + PDF)
+REPLIT TOOLS (Section 5):
+Title: "Technology Stack"
+MCP Server: Notion (tourist destinations DB)
+Agent 4: Code generation (Bot + PWA + DB)
+Replit Database: SQLite 10 tables
+Replit Deployments: Hosting PWA + Bot
+Replit Secrets: API Keys management
+Design Canvas: 5 UI variants documented
+Connectors: Replit Auth + GitHub
+DESIGN & AESTHETICS (Section 6):
+Title: "Caribbean Design"
+Color Palette: Background #1a1a2e, Turquoise #1ABC9C, Orange #E67E22
+Typography: Inter (UI) + Poppins (titles)
+Accessibility: WCAG AA Compliant
+USER FLOW - 90 SECOND BOOKING (Section 7):
+Title: "Book in 90 Seconds"
+Timeline: /start (5s) → Categories (10s) → Select (20s) → Price (15s) → Confirm (10s) → Voucher (15s) → Sync agency (15s) = 90s total
+MARKETING PLAN (Section 8):
+Title: "Go-to-Market Strategy"
+4 pillars: Partnerships (3-5 local agencies), Waitlist (tourists + agencies), On-site Demos (airport, ferry, beaches), Content (SEO blog + influencers)
+WHY IT'S UNIQUE (Section 9):
+Title: "Competitive Advantage"
+Text: "Margarita Go Ride × A.L.M.A. is the ONLY marketplace that operates during blackouts (5-layer resilience) + verified information (doesn't invent destinations). Competition: 20+ manual WhatsApps that go silent at 8PM. We are 24/7, 90-second bookings, Caribbean technology for Caribbean problems."

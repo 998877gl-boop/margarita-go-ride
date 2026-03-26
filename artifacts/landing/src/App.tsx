@@ -259,25 +259,92 @@ export default function App() {
       <section className="articulo" id="article">
         <div className="container">
           <div className="section-label">{tx.article_label}</div>
+          <div className="article-jury-badge">{tx.article_badge}</div>
           <div className="articulo-content">
             <h2 className="articulo-title">{tx.article_title}</h2>
+            <p className="article-subtitle">{tx.article_subtitle}</p>
             <div className="articulo-meta">
               <span>{tx.article_meta1}</span>
               <span>·</span>
               <span>{tx.article_meta2}</span>
               <span>·</span>
               <span>{tx.article_meta3}</span>
+              <span>·</span>
+              <span>{tx.article_meta4}</span>
             </div>
+
             <div className="articulo-body">
-              <p>{tx.article_p1}</p>
-              <h3>{tx.article_h1}</h3>
-              <p>{tx.article_p2}</p>
-              <h3>{tx.article_h2}</h3>
-              <p>{tx.article_p3}</p>
-              <h3>{tx.article_h3}</h3>
-              <p>{tx.article_p4}</p>
+              <p className="article-intro-text">{tx.article_intro}</p>
+
+              <h3>{tx.article_s1_title}</h3>
+              <p>{tx.article_s1_p1}</p>
+              <div className="article-items-list">
+                {tx.article_s1_items.map((item, i) => (
+                  <div className="article-item" key={i}>
+                    <strong>{item.label}:</strong> {item.desc}
+                  </div>
+                ))}
+              </div>
+              <p>{tx.article_s1_p2}</p>
+
+              <h3>{tx.article_s2_title}</h3>
+              <p>{tx.article_s2_p1}</p>
+              <div className="article-audience-grid">
+                <div className="article-audience-block">
+                  <div className="article-audience-title">{tx.article_s2_tourists_title}</div>
+                  <ul>{tx.article_s2_tourists.map((t2, i) => <li key={i}>{t2}</li>)}</ul>
+                </div>
+                <div className="article-audience-block accent">
+                  <div className="article-audience-title">{tx.article_s2_agencies_title}</div>
+                  <ul>{tx.article_s2_agencies.map((a, i) => <li key={i}>{a}</li>)}</ul>
+                </div>
+              </div>
+
+              <h3>{tx.article_s3_title}</h3>
+              <div className="article-features-list">
+                {tx.article_s3_features.map((f, i) => (
+                  <div className="article-feature" key={i}>
+                    <span className="article-feature-icon">{f.icon}</span>
+                    <div><strong>{f.title}</strong><p>{f.desc}</p></div>
+                  </div>
+                ))}
+              </div>
+
+              <h3>{tx.article_s4_title}</h3>
+              <p>{tx.article_s4_intro}</p>
+              <div className="article-layers">
+                {tx.article_s4_layers.map((l, i) => (
+                  <div className="article-layer" key={i}>
+                    <span className="article-layer-num">{l.num}</span>
+                    <div><strong>{l.title}</strong><p>{l.desc}</p></div>
+                  </div>
+                ))}
+              </div>
+
+              <h3>{tx.article_s5_title}</h3>
+              <p>{tx.article_s5_intro}</p>
+              <div className="article-tools-grid">
+                {tx.article_s5_tools.map((tool, i) => (
+                  <div className="article-tool" key={i}>
+                    <span>{tool.icon}</span>
+                    <div><strong>{tool.title}</strong><p>{tool.desc}</p></div>
+                  </div>
+                ))}
+              </div>
+
+              <h3>{tx.article_s6_title}</h3>
+              <p>{tx.article_s6_p1}</p>
+              <p>{tx.article_s6_p2}</p>
               <blockquote className="articulo-quote">{tx.article_quote}</blockquote>
-              <p>{tx.article_p5}</p>
+
+              <h3>{tx.article_s7_title}</h3>
+              <div className="article-checklist">
+                {tx.article_s7_items.map((item, i) => (
+                  <div className="article-check-item" key={i}>{item}</div>
+                ))}
+              </div>
+
+              <p className="article-closing">{tx.article_closing}</p>
             </div>
           </div>
         </div>
