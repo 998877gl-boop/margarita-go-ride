@@ -24,3 +24,8 @@ expertMode = true
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 20000
+
+[userenv]
+
+[userenv.development]
+TELEGRAM_WEBHOOK_URL = "https://8ba42bad-bd93-4116-ab23-66e2fad22fb5-00-14ukjrywaq5z1.kirk.replit.dev/api/telegram/webhook"
