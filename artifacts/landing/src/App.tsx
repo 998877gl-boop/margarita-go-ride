@@ -26,7 +26,7 @@ export default function App() {
         <div className="container">
           <div className="header-inner">
             <div className="logo">
-              <span className="logo-icon">🛵</span>
+              <span className="logo-icon">🚗</span>
               <div className="logo-text-group">
                 <span className="logo-text">Margarita Go Ride × A.L.M.A.</span>
                 <span className="logo-sub">{tx.header_subtitle}</span>
@@ -354,7 +354,7 @@ export default function App() {
         <div className="container">
           <div className="footer-inner">
             <div className="footer-brand">
-              <span className="logo-icon">🛵</span>
+              <span className="logo-icon">🚗</span>
               <span>Margarita Go Ride × A.L.M.A.</span>
             </div>
             <div className="footer-meta">{tx.footer_date}</div>
