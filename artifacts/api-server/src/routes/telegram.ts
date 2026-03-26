@@ -110,6 +110,14 @@ router.post("/telegram/webhook", validateWebhookSecret, async (req, res) => {
 export async function registerWebhook() {
   if (!bot || !BOT_TOKEN) return;
 
+  try {
+    await bot.init();
+    logger.info("Telegram bot initialized successfully");
+  } catch (err) {
+    logger.error({ err }, "Failed to initialize Telegram bot — check TELEGRAM_BOT_TOKEN");
+    return;
+  }
+
   const webhookUrl = process.env["TELEGRAM_WEBHOOK_URL"];
   if (!webhookUrl) {
     logger.info("TELEGRAM_WEBHOOK_URL not set — skipping webhook registration");
