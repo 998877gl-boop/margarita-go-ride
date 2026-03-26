@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/landing/"
-title = "Margarita Go Ride × A.L.M.A."
+title = "Margarita-GO-Rid3-Build"
 version = "1.0.0"
 id = "artifacts/landing"
 router = "path"
