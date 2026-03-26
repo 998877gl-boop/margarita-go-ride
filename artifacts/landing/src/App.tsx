@@ -1,144 +1,161 @@
+import { useState, useEffect } from "react";
+import { t, type Lang } from "./translations";
 import "./landing.css";
 
 export default function App() {
+  const [lang, setLang] = useState<Lang>(() => {
+    return (localStorage.getItem("lang") as Lang) ?? "en";
+  });
+  const [fading, setFading] = useState(false);
+
+  function switchLang(next: Lang) {
+    if (next === lang) return;
+    setFading(true);
+    setTimeout(() => {
+      setLang(next);
+      localStorage.setItem("lang", next);
+      setFading(false);
+    }, 180);
+  }
+
+  const tx = t[lang];
+
   return (
-    <>
+    <div className={`lang-wrapper${fading ? " fading" : ""}`}>
       <header className="site-header">
         <div className="container">
           <div className="header-inner">
             <div className="logo">
               <span className="logo-icon">🛵</span>
-              <span className="logo-text">Margarita Go Ride</span>
+              <div className="logo-text-group">
+                <span className="logo-text">Margarita Go Ride × A.L.M.A.</span>
+                <span className="logo-sub">{tx.header_subtitle}</span>
+              </div>
             </div>
-            <div className="checkpoint-badge">Checkpoint 1 — Agent 4 Buildathon</div>
+            <div className="header-right">
+              <div className="checkpoint-badge">{tx.header_badge}</div>
+              <div className="lang-toggle">
+                <button
+                  className={`lang-btn${lang === "en" ? " active" : ""}`}
+                  onClick={() => switchLang("en")}
+                >
+                  🇺🇸 EN
+                </button>
+                <button
+                  className={`lang-btn${lang === "es" ? " active" : ""}`}
+                  onClick={() => switchLang("es")}
+                >
+                  🇻🇪 ES
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </header>
 
       <section className="hero">
         <div className="container">
-          <div className="hero-eyebrow">Proyecto Buildathon 2026</div>
+          <div className="hero-eyebrow">{tx.hero_eyebrow}</div>
           <h1 className="hero-title">
-            Margarita Go Ride<br />
-            <span className="hero-title-accent">× A.L.M.A.</span>
+            {tx.hero_title_main}<br />
+            <span className="hero-title-accent">{tx.hero_title_accent}</span>
           </h1>
-          <p className="hero-tagline">
-            Alquiler de vehículos en 90 segundos — Isla de Margarita
-          </p>
+          <p className="hero-tagline">{tx.hero_tagline}</p>
+          <p className="hero-location">📍 {tx.hero_location}</p>
           <div className="hero-cta-group">
-            <a href="#resumen" className="btn btn-primary">Conoce el proyecto</a>
-            <a href="#articulo" className="btn btn-outline">Leer artículo</a>
+            <a href="#features" className="btn btn-primary">{tx.hero_cta}</a>
+            <a href="#article" className="btn btn-outline">{tx.hero_cta2}</a>
+          </div>
+          <div className="hero-stats">
+            {tx.stats.map((s, i) => (
+              <div className="hero-stat" key={i}>
+                <div className="stat-number">{s.number}</div>
+                <div className="stat-label">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
         <div className="hero-glow" />
       </section>
 
-      <section className="resumen" id="resumen">
+      <section className="what-section" id="what">
         <div className="container">
-          <div className="section-label">Resumen</div>
-          <h2 className="section-title">¿De qué trata este proyecto?</h2>
-          <div className="resumen-grid">
-            <div className="resumen-text">
-              <p>
-                {/* EDITABLE: Reemplaza este párrafo con tu descripción principal */}
-                Margarita Go Ride es una plataforma de alquiler de vehículos diseñada específicamente
-                para la Isla de Margarita, Venezuela. El sistema permite a los turistas y locales
-                reservar motos, cuatrimotos y vehículos en menos de 90 segundos, eliminando el
-                papeleo y las largas esperas tradicionales del sector.
-              </p>
-              <p>
-                {/* EDITABLE: Contexto del chatbot A.L.M.A. */}
-                A.L.M.A. (Asistente de Logística y Movilidad Automatizada) es el cerebro inteligente
-                detrás de la plataforma. Integrado como chatbot de Telegram, A.L.M.A. guía al usuario
-                durante todo el proceso: desde la selección del vehículo, verificación de disponibilidad,
-                hasta la confirmación de la reserva y las instrucciones de recogida.
-              </p>
-              <p>
-                {/* EDITABLE: Impacto esperado / visión */}
-                Este proyecto fue desarrollado como parte del Agent 4 Buildathon 2026, con el objetivo
-                de demostrar cómo la inteligencia artificial conversacional puede transformar industrias
-                tradicionales en mercados emergentes, comenzando por el turismo en la Isla de Margarita.
-              </p>
+          <div className="section-label">{tx.what_label}</div>
+          <h2 className="section-title">{tx.what_title}</h2>
+          <p className="what-intro">{tx.what_p1}</p>
+          <div className="problems-grid">
+            <div className="problem-card">
+              <span className="problem-icon">⚡</span>
+              <strong>{tx.what_b1}</strong>
+              <p>{tx.what_b1d}</p>
             </div>
-            <div className="resumen-stats">
-              <div className="stat-card">
-                <div className="stat-number">90s</div>
-                <div className="stat-label">Reserva completa</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">24/7</div>
-                <div className="stat-label">Asistencia A.L.M.A.</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">100%</div>
-                <div className="stat-label">Digital y sin papel</div>
-              </div>
+            <div className="problem-card">
+              <span className="problem-icon">🌙</span>
+              <strong>{tx.what_b2}</strong>
+              <p>{tx.what_b2d}</p>
+            </div>
+            <div className="problem-card">
+              <span className="problem-icon">🗺️</span>
+              <strong>{tx.what_b3}</strong>
+              <p>{tx.what_b3d}</p>
+            </div>
+          </div>
+          <p className="what-solution">{tx.what_p2}</p>
+        </div>
+      </section>
+
+      <section className="audience-section">
+        <div className="container">
+          <div className="section-label">{tx.audience_label}</div>
+          <h2 className="section-title">{tx.audience_title}</h2>
+          <div className="audience-grid">
+            <div className="audience-card">
+              <div className="audience-card-title">{tx.audience_col1}</div>
+              <ul>
+                {tx.audience_col1_items.map((item, i) => (
+                  <li key={i}>✓ {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="audience-card accent">
+              <div className="audience-card-title">{tx.audience_col2}</div>
+              <ul>
+                {tx.audience_col2_items.map((item, i) => (
+                  <li key={i}>✓ {item}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="features">
+      <section className="features" id="features">
         <div className="container">
-          <div className="section-label">Características</div>
-          <h2 className="section-title">Lo que hace especial a A.L.M.A.</h2>
-          <ul className="features-list">
-            <li className="feature-item">
-              <span className="feature-icon">⚡</span>
-              <div>
-                <strong>Reservas ultrarrápidas</strong>
-                <p>Proceso de alquiler completado en 90 segundos o menos, sin formularios complejos.</p>
+          <div className="section-label">{tx.features_label}</div>
+          <h2 className="section-title">{tx.features_title}</h2>
+          <div className="features-cards">
+            {tx.features.map((f, i) => (
+              <div className="feature-card" key={i}>
+                <span className="feature-icon">{f.icon}</span>
+                <strong>{f.title}</strong>
+                <p>{f.desc}</p>
               </div>
-            </li>
-            <li className="feature-item">
-              <span className="feature-icon">🤖</span>
-              <div>
-                <strong>Chatbot inteligente en Telegram</strong>
-                <p>A.L.M.A. entiende lenguaje natural y guía al usuario paso a paso en español.</p>
-              </div>
-            </li>
-            <li className="feature-item">
-              <span className="feature-icon">📊</span>
-              <div>
-                <strong>Dashboard en tiempo real</strong>
-                <p>Panel de control para el operador con estadísticas de uso, mensajes y usuarios activos.</p>
-              </div>
-            </li>
-            <li className="feature-item">
-              <span className="feature-icon">📱</span>
-              <div>
-                <strong>PWA instalable</strong>
-                <p>La app funciona sin internet y se puede instalar como app nativa en cualquier dispositivo.</p>
-              </div>
-            </li>
-            <li className="feature-item">
-              <span className="feature-icon">🔒</span>
-              <div>
-                <strong>Seguridad y trazabilidad</strong>
-                <p>Todas las conversaciones y reservas quedan registradas con historial completo y auditable.</p>
-              </div>
-            </li>
-          </ul>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="galeria">
+      <section className="resilience-section">
         <div className="container">
-          <div className="section-label">Galería</div>
-          <h2 className="section-title">El proyecto en imágenes</h2>
-          <div className="galeria-grid">
-            {[
-              { label: "Dashboard principal", icon: "📊" },
-              { label: "Chat con A.L.M.A.", icon: "💬" },
-              { label: "Flota de vehículos", icon: "🛵" },
-              { label: "Proceso de reserva", icon: "📋" },
-              { label: "Vista móvil", icon: "📱" },
-            ].map((item, i) => (
-              <div className="galeria-item" key={i}>
-                <div className="galeria-placeholder">
-                  <span className="galeria-icon">{item.icon}</span>
-                  <span className="galeria-label">{item.label}</span>
-                  <span className="galeria-hint">[ Reemplaza con tu imagen ]</span>
+          <div className="section-label">{tx.resilience_label}</div>
+          <h2 className="section-title">{tx.resilience_title}</h2>
+          <div className="layers-list">
+            {tx.resilience_layers.map((layer, i) => (
+              <div className="layer-item" key={i}>
+                <div className="layer-num">{layer.num}</div>
+                <div className="layer-body">
+                  <strong>{layer.title}</strong>
+                  <p>{layer.desc}</p>
                 </div>
               </div>
             ))}
@@ -146,60 +163,121 @@ export default function App() {
         </div>
       </section>
 
-      <section className="articulo" id="articulo">
+      <section className="stack-section">
         <div className="container">
-          <div className="section-label">Artículo</div>
+          <div className="section-label">{tx.stack_label}</div>
+          <h2 className="section-title">{tx.stack_title}</h2>
+          <div className="stack-grid">
+            {tx.stack_items.map((item, i) => (
+              <div className="stack-card" key={i}>
+                <span className="stack-icon">{item.icon}</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="design-section">
+        <div className="container">
+          <div className="section-label">{tx.design_label}</div>
+          <h2 className="section-title">{tx.design_title}</h2>
+          <div className="design-grid">
+            <div className="design-block">
+              <h3>{tx.design_palette}</h3>
+              <div className="palette-row">
+                {tx.palette.map((p, i) => (
+                  <div className="palette-item" key={i}>
+                    <div className="palette-swatch" style={{ background: p.color }} />
+                    <span className="palette-hex">{p.color}</span>
+                    <span className="palette-name">{p.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="design-block">
+              <h3>{tx.design_typography}</h3>
+              <ul className="typo-list">
+                {tx.design_typo_items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+              <p className="a11y-note">♿ {tx.design_a11y}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="flow-section">
+        <div className="container">
+          <div className="section-label">{tx.flow_label}</div>
+          <h2 className="section-title">{tx.flow_title}</h2>
+          <div className="flow-timeline">
+            {tx.flow_steps.map((step, i) => (
+              <div className="flow-step" key={i}>
+                <div className="flow-time">{step.time}</div>
+                <div className="flow-dot" />
+                <div className="flow-label">{step.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flow-total">{tx.flow_total}</div>
+        </div>
+      </section>
+
+      <section className="gtm-section">
+        <div className="container">
+          <div className="section-label">{tx.gtm_label}</div>
+          <h2 className="section-title">{tx.gtm_title}</h2>
+          <div className="gtm-grid">
+            {tx.gtm_pillars.map((p, i) => (
+              <div className="gtm-card" key={i}>
+                <span className="gtm-icon">{p.icon}</span>
+                <strong>{p.title}</strong>
+                <p>{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="competitive-section">
+        <div className="container">
+          <div className="section-label">{tx.competitive_label}</div>
+          <h2 className="section-title">{tx.competitive_title}</h2>
+          <blockquote className="competitive-highlight">
+            {tx.competitive_highlight}
+          </blockquote>
+          <p className="competitive-vs">❌ {tx.competitive_vs}</p>
+          <p className="competitive-us">✅ {tx.competitive_us}</p>
+        </div>
+      </section>
+
+      <section className="articulo" id="article">
+        <div className="container">
+          <div className="section-label">{tx.article_label}</div>
           <div className="articulo-content">
-            <h2 className="articulo-title">
-              Cómo la IA conversacional puede transformar el turismo en Venezuela
-            </h2>
+            <h2 className="articulo-title">{tx.article_title}</h2>
             <div className="articulo-meta">
-              <span>Checkpoint 1 · Agent 4 Buildathon 2026</span>
+              <span>{tx.article_meta1}</span>
               <span>·</span>
-              <span>Isla de Margarita, Venezuela</span>
+              <span>{tx.article_meta2}</span>
+              <span>·</span>
+              <span>{tx.article_meta3}</span>
             </div>
             <div className="articulo-body">
-              <p>
-                {/* EDITABLE: Introducción del artículo */}
-                El sector turístico en la Isla de Margarita enfrenta un reto histórico: miles de visitantes
-                llegan cada año buscando experiencias de movilidad flexibles, pero los procesos de alquiler
-                siguen siendo analógicos, lentos y dependientes de presencia física. Margarita Go Ride
-                nació para resolver exactamente ese problema.
-              </p>
-              <h3>El problema que resolvemos</h3>
-              <p>
-                {/* EDITABLE: Desarrollo del problema */}
-                Cuando un turista llega a Margarita y quiere alquilar una moto para explorar la isla, el
-                proceso tradicional puede tomar entre 30 y 60 minutos: buscar una agencia, negociar precio,
-                llenar formularios en papel, hacer copias de documentos y esperar disponibilidad. Con A.L.M.A.,
-                ese mismo proceso ocurre en menos de 90 segundos desde el teléfono del usuario.
-              </p>
-              <h3>La solución tecnológica</h3>
-              <p>
-                {/* EDITABLE: Descripción técnica */}
-                A.L.M.A. combina un chatbot de Telegram con una base de datos en tiempo real y un panel
-                de control web accesible desde cualquier dispositivo. El operador ve en tiempo real qué
-                vehículos están disponibles, quién los está solicitando, y puede confirmar o ajustar
-                disponibilidad con un solo mensaje.
-              </p>
-              <h3>Por qué Telegram</h3>
-              <p>
-                {/* EDITABLE: Justificación de la plataforma */}
-                Telegram tiene más de 10 millones de usuarios activos en Venezuela y funciona con conexiones
-                de datos limitadas. Es la plataforma ideal para llegar a turistas y locales sin requerir
-                que descarguen una app adicional. A.L.M.A. vive donde el usuario ya está.
-              </p>
-              <blockquote className="articulo-quote">
-                "El mejor producto no es el más complejo. Es el que lleva al usuario del problema a la
-                solución en el menor tiempo posible."
-              </blockquote>
-              <p>
-                {/* EDITABLE: Conclusión / próximos pasos */}
-                Este Checkpoint 1 demuestra que la infraestructura tecnológica está funcionando: el bot
-                recibe mensajes, los guarda en base de datos, el dashboard muestra estadísticas en vivo,
-                y la PWA es instalable offline. Los próximos checkpoints integrarán el flujo completo
-                de reservas, pagos y confirmaciones automáticas.
-              </p>
+              <p>{tx.article_p1}</p>
+              <h3>{tx.article_h1}</h3>
+              <p>{tx.article_p2}</p>
+              <h3>{tx.article_h2}</h3>
+              <p>{tx.article_p3}</p>
+              <h3>{tx.article_h3}</h3>
+              <p>{tx.article_p4}</p>
+              <blockquote className="articulo-quote">{tx.article_quote}</blockquote>
+              <p>{tx.article_p5}</p>
             </div>
           </div>
         </div>
@@ -212,18 +290,26 @@ export default function App() {
               <span className="logo-icon">🛵</span>
               <span>Margarita Go Ride × A.L.M.A.</span>
             </div>
-            <div className="footer-meta">
-              Checkpoint 1 — Agent 4 Buildathon 2026
-            </div>
+            <div className="footer-meta">{tx.footer_date}</div>
             <div className="footer-links">
-              <a href="#resumen">Proyecto</a>
-              <a href="#articulo">Artículo</a>
+              <a href="#what">{tx.footer_links_project}</a>
+              <a href="#article">{tx.footer_links_article}</a>
+              <a
+                href="https://github.com/998877gl-boop/margarita-go-ride"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {tx.footer_github}
+              </a>
+            </div>
+            <div className="footer-bottom">
+              <span>{tx.footer_built}</span>
               <span className="footer-divider">·</span>
-              <span className="footer-credit">Built with Replit Agent 4</span>
+              <span>{tx.footer_copyright}</span>
             </div>
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

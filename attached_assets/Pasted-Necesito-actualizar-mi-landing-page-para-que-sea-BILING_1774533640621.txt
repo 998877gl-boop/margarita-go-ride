@@ -1,0 +1,220 @@
+Necesito actualizar mi landing page para que sea BILINGÜE (Inglés + Español)
+con INGLÉS como idioma principal para los jueces del Buildathon.
+
+═══════════════════════════════════════════════════════════════
+REQUISITOS DE IDIOMA
+═══════════════════════════════════════════════════════════════
+- Idioma PRINCIPAL: Inglés (default al cargar la página)
+- Idioma SECUNDARIO: Español (accesible vía toggle/switch)
+- Toggle de idioma en el HEADER (banderas o botón EN/ES)
+- Todo el contenido debe estar en ambos idiomas
+
+═══════════════════════════════════════════════════════════════
+ESTRUCTURA DE ARCHIVOS
+═══════════════════════════════════════════════════════════════
+Crea:
+- app.py (Flask server con rutas para ambos idiomas)
+- templates/index.html (página principal)
+- static/styles.css (estilos)
+- static/js/lang-switcher.js (lógica para cambiar idioma)
+- translations.json (todas las traducciones EN/ES)
+
+═══════════════════════════════════════════════════════════════
+SECCIONES DE LA LANDING (EN INGLÉS PRIMERO)
+═══════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────┐
+│ HEADER                                                      │
+│ Logo: "Margarita Go Ride × A.L.M.A."                        │
+│ Subtitle: "Local Mobility and Rental Assistant"             │
+│ Badge: "Checkpoint 1 - Agent 4 Buildathon 2026"             │
+│ Language Toggle: [🇺 EN] [🇸 ES]                          │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ HERO                                                        │
+│ Title: "Vehicle Rental in 90 Seconds"                       │
+│ Subtitle: "Margarita Island, Venezuela"                     │
+│ CTA Button: "Watch Demo" → scroll to next section          │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ WHAT IT DOES (Section 1)                                    │
+│ Title: "What is Margarita Go Ride × A.L.M.A.?"              │
+│                                                              │
+│ Text: "Margarita Go Ride + A.L.M.A. is a vehicle rental     │
+│ marketplace with an intelligent conversational assistant    │
+│ that solves:                                                 │
+│ • Digital Friction (20+ WhatsApp chats)                     │
+│ • Operational Resilience Failures (no response after 8PM)   │
+│ • Contextual Disconnection (no local guidance)              │
+│                                                              │
+│ Enables bookings in 90 seconds with Service Centralization  │
+│ (+20 agencies), Infrastructure Resilience (5 layers, works  │
+│ during blackouts), and 24/7 Hyperlocal Assistance."         │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ TARGET AUDIENCE (Section 2)                                 │
+│ Title: "Who is it for?"                                     │
+│                                                              │
+│ ┌──────────────────┬────────────────────────────────────┐   │
+│ │ TOURISTS         │ LOCAL AGENCIES                     │   │
+│ │ - National       │ - Digitize customer service        │   │
+│ │ - International  │ - Increase bookings                │   │
+│ │ - Convenience    │ - No 24/7 staff needed             │   │
+│ │ - Safety + Guide │ - CRUD Dashboard                   │   │
+│ └──────────────────┴────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ KEY FEATURES (Section 3)                                    │
+│ Title: "Key Features"                                       │
+│                                                              │
+│ 5 cards with icons:                                         │
+│ 1. ⏱️ Book in less than 90 seconds                         │
+│ 2. 🛡️ Resilient infrastructure (works during blackouts)   │
+│ 3. 🤖 Conversational assistant 7-turn flows + Caribbean    │
+│ 4. 📍 Verified tourist info (Notion MCP)                   │
+│ 5. 📊 Agency dashboard without 24/7 staff                  │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ RESILIENCE ARCHITECTURE - 5 LAYERS (Section 4)              │
+│ Title: "Blackout Stack - 5 Layers of Resilience"            │
+│                                                              │
+│ 1. Layer 1: Telegram Bot (24/7 automated)                  │
+│ 2. Layer 2: PWA Offline-First (cache + sync <8min)         │
+│ 3. Layer 3: SMS Fallback (Twilio emergencies)              │
+│ 4. Layer 4: Call Center (human backup at agencies)         │
+│ 5. Layer 5: Offline Kit (downloadable PWA + PDF)           │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ REPLIT TOOLS (Section 5)                                    │
+│ Title: "Technology Stack"                                   │
+│                                                              │
+│ - MCP Server: Notion (tourist destinations DB)             │
+│ - Agent 4: Code generation (Bot + PWA + DB)                │
+│ - Replit Database: SQLite 10 tables                        │
+│ - Replit Deployments: Hosting PWA + Bot                    │
+│ - Replit Secrets: API Keys management                      │
+│ - Design Canvas: 5 UI variants documented                  │
+│ - Connectors: Replit Auth + GitHub                         │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ DESIGN & AESTHETICS (Section 6)                             │
+│ Title: "Caribbean Design"                                   │
+│                                                              │
+│ Color Palette (show color boxes):                          │
+│ - Background: #1a1a2e (dark box)                           │
+│ - Turquoise: #1ABC9C (turquoise box)                       │
+│ - Orange: #E67E22 (orange box)                             │
+│                                                              │
+│ Typography: Inter (UI) + Poppins (titles)                  │
+│ Accessibility: WCAG AA Compliant                           │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ USER FLOW - 90 SECOND BOOKING (Section 7)                   │
+│ Title: "Book in 90 Seconds"                                 │
+│                                                              │
+│ Timeline:                                                   │
+│ 1. /start (5s) → 2. Categories (10s) → 3. Select (20s) →   │
+│ 4. Price (15s) → 5. Confirm (10s) → 6. Voucher (15s) →     │
+│ 7. Sync agency (15s) = 90s total                           │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ MARKETING PLAN (Section 8)                                  │
+│ Title: "Go-to-Market Strategy"                              │
+│                                                              │
+│ 4 pillars:                                                  │
+│ - Partnerships (3-5 local agencies)                        │
+│ - Waitlist (tourists + agencies)                           │
+│ - On-site Demos (airport, ferry, beaches)                  │
+│ - Content (SEO blog + influencers)                         │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ WHY IT'S UNIQUE (Section 9)                                 │
+│ Title: "Competitive Advantage"                              │
+│                                                              │
+│ Highlight text:                                             │
+│ "Margarita Go Ride × A.L.M.A. is the ONLY marketplace that │
+│ operates during blackouts (5-layer resilience) + verified  │
+│ information (doesn't invent destinations).                 │
+│                                                              │
+│ Competition: 20+ manual WhatsApps that go silent at 8PM.   │
+│ We are 24/7, 90-second bookings, Caribbean technology for  │
+│ Caribbean problems."                                        │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ FOOTER (Section 10)                                         │
+│ "Built with Replit Agent 4"                                │
+│ "Checkpoint 1 - March 26, 2026"                            │
+│ Links: GitHub | Loom Video | Replit Gallery                │
+│ Copyright: Margarita Go Ride × A.L.M.A. 2026               │
+└─────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════
+TRADUCCIONES ESPAÑOL (Section por Section)
+═══════════════════════════════════════════════════════════════
+
+Crea un archivo translations.json con TODAS las traducciones:
+
+{
+  "en": {
+    "hero_title": "Vehicle Rental in 90 Seconds",
+    "hero_subtitle": "Margarita Island, Venezuela",
+    "what_title": "What is Margarita Go Ride × A.L.M.A.?",
+    ...
+  },
+  "es": {
+    "hero_title": "Alquiler de Vehículos en 90 Segundos",
+    "hero_subtitle": "Isla de Margarita, Venezuela",
+    "what_title": "¿Qué es Margarita Go Ride × A.L.M.A.?",
+    ...
+  }
+}
+
+═══════════════════════════════════════════════════════════════
+FUNCIONALIDAD DEL LANGUAGE TOGGLE
+═══════════════════════════════════════════════════════════════
+1. Botón en header con banderas: [🇺🇸 EN] [🇪🇸 ES]
+2. Default al cargar: INGLÉS
+3. Al hacer click: cambia todo el texto instantáneamente (sin reload)
+4. Guarda preferencia en localStorage (si vuelve, mantiene idioma)
+5. Animación suave al cambiar (fade in/out)
+
+═══════════════════════════════════════════════════════════════
+REQUISITOS TÉCNICOS
+═══════════════════════════════════════════════════════════════
+- Flask (app.py) para servir la página
+- HTML5 semántico + CSS3
+- JavaScript vanilla para el language switcher (sin frameworks)
+- Mobile-first responsive
+- Colores: #1a1a2e, #1ABC9C, #E67E22
+- Tipografía: Inter (UI) + Poppins (titles)
+- Todo el texto en un archivo translations.json (fácil de editar)
+- Carga rápida (<3s)
+
+═══════════════════════════════════════════════════════════════
+IMPORTANTE PARA EL BUILDATHON
+═══════════════════════════════════════════════════════════════
+- Los jueces verán la página en INGLÉS por defecto
+- El idioma español demuestra alcance local/regional
+- El toggle debe ser visible y fácil de usar
+- Ambas versiones deben tener el MISMO contenido completo
+
+═══════════════════════════════════════════════════════════════
+INSTRUCCIONES PARA AGENT 4
+═══════════════════════════════════════════════════════════════
+1. Primero muéstrame la estructura de archivos
+2. Luego muéstrame el código de cada archivo
+3. No ejecutes hasta que yo confirme
+4. La URL debe actualizarse automáticamente después del deploy
+
+¿Entendido? Empieza por la estructura de archivos.
